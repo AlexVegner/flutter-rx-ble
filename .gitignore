@@ -9,3 +9,7 @@ build/
 **/.idea
 ios/.symlinks/
 example/ios/.symlinks/
+
+# flutter
+.flutter-plugins-dependencies
+example/ios/Flutter/flutter_export_environment.sh

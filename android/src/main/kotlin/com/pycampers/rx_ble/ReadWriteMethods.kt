@@ -12,6 +12,7 @@ import java.util.UUID
 interface ReadWriteInterface {
     fun discoverChars(call: MethodCall, result: Result)
     fun readChar(call: MethodCall, result: Result)
+    fun readRssi(call: MethodCall, result: Result)
     fun writeChar(call: MethodCall, result: Result)
     fun requestMtu(call: MethodCall, result: Result)
     fun observeCharOnListen(id: Int, args: Any?, sink: MainThreadStreamSink)
@@ -56,6 +57,12 @@ class ReadWriteMethods : ReadWriteInterface {
         val uuid = UUID.fromString(call.argument<String>("uuid")!!)
         val connection = getBleConnection(deviceId)
         sendSingle(connection.readCharacteristic(uuid), result)
+    }
+
+    override fun readRssi(call: MethodCall, result: Result) {
+        val deviceId = call.argument<String>("deviceId")!!
+        val connection = getBleConnection(deviceId)
+        sendSingle(connection.readRssi(), result)
     }
 
     override fun writeChar(call: MethodCall, result: Result) {

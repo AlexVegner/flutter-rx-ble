@@ -253,6 +253,17 @@ class RxBle {
     });
   }
 
+  /// Performs read rssi
+  ///
+  /// Throws the following errors:
+  ///   - [BleGattCannotStartException]
+  ///   - [BleGattException].
+  static Future<int> readRssi(String deviceId) async {
+    return await RxBle.invokeMethod("readRssi", {
+      "deviceId": deviceId,
+    });
+  }
+
   /// Set up BLE notifications,
   /// and emit the changes in the characteristic with the given [uuid].
   static Stream<Uint8List> observeChar(String deviceId, String uuid) {
